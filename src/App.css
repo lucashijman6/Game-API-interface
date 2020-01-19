@@ -1,3 +1,32 @@
 .Library {
-  text-align: center;
+  text-align: left;
+  padding: 25px;
+}
+
+.Library .button {
+  padding: 5px;
+  margin: 10px;
+  margin-left: 95px;
+}
+
+.thumbnails {
+  padding: 0.1vw;
+  max-width: 530px;
+  grid-template-columns: 30vw 30vw 30vw;
+  column-gap: 10px;
+  row-gap: 10px;
+  color: rgb(0, 0, 0);
+}
+
+.thumbnails .div {  
+  padding: 8px;
+  border-radius: 10px;
+}
+
+.card {
+  text-align: left;
+  padding: 15px;
+  background-color: rgb(255, 255, 0);
+  border-radius: 10px;
+  margin: 10px;
 }
