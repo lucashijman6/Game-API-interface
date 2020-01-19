@@ -9,7 +9,7 @@ class Card extends React.Component {
     }
 
     componentDidMount() {
-        
+        this.loadDetails()
     }
 
     async loadDetails() {
@@ -20,8 +20,11 @@ class Card extends React.Component {
 
     render() {
         return (
-            <div>
-                Titel: {this.props.name}
+            <div class="card">
+                <div class="prop">{this.props.name}</div>
+                <div class="prop">{this.props.company}</div>
+                <div class="prop">{this.props.console}</div>
+                <div class="prop">{this.props.release}</div>
             </div>
         )
     }
