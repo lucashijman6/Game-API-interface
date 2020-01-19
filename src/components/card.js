@@ -21,10 +21,14 @@ class Card extends React.Component {
     render() {
         return (
             <div class="card">
-                <div class="prop">{this.props.name}</div>
-                <div class="prop">{this.props.company}</div>
-                <div class="prop">{this.props.console}</div>
-                <div class="prop">{this.props.release}</div>
+                <div class="titleprop">{this.props.name}</div>
+                <select class="detailslijst">
+                    <option default hidden>Bekijk details</option>
+                    <option class="prop" disabled>Bedrijf: {this.props.company}</option>
+                    <option class="prop" disabled>Console: {this.props.console}</option>
+                    <option class="prop" disabled>Release date: {this.props.release}</option>
+                </select>
+                <button>edit</button>
             </div>
         )
     }
