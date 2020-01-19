@@ -15,7 +15,8 @@ export default class Library extends Component {
     }
 
     async loadGames() {
-        const response = await fetch(`http://145.24.222.100:8000/games`, {
+        let start = 1
+        const response = await fetch(`http://145.24.222.100:8000/games?start=` + start + `&limit=5`, {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
@@ -27,19 +28,17 @@ export default class Library extends Component {
 
     render() {
         let videogames = this.state.games.map((singleGame, i) =>
-            <Card key={i} name={singleGame.name}/>
+            <Card key={i} name={singleGame.name} company={singleGame.company} console={singleGame.console} release={singleGame.release}/>
         )
 
         return (
             <div className="library">
-                <div>
-                    <button>Load next 5 games</button>
-                </div>
-                <div>
-                    Collected: {videogames.length}
-                </div>
                 <div className="thumbnails">
-                    {videogames}
+                    <ul>{videogames}</ul>
+                </div>
+                <div>
+                    <button class="button" onClick="">Load previous 5 games</button>
+                    <button class="button" onClick="">Load next 5 games</button>
                 </div>
             </div>
         )   
