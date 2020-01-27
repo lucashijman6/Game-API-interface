@@ -5,14 +5,12 @@
 
 .Library .button {
   padding: 5px;
-  margin-left: 95px;
+  margin-left: 70px;
 }
 
 .thumbnails {
   padding: 0.1vw;
-  max-width: 530px;
-  grid-template-columns: 30vw 30vw 30vw;
-  column-gap: 10px;
+  max-width: 450px;
   row-gap: 10px;
   color: rgb(0, 0, 0);
 }
