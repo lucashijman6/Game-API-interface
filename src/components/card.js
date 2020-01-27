@@ -21,9 +21,9 @@ class Card extends React.Component {
     render() {
         return (
             <div class="card">
-                <div class="titleprop">{this.props.name}</div>
                 <select class="detailslijst">
-                    <option default hidden>Bekijk details</option>
+                    <div class="titleprop"></div>
+                    <option default hidden>{this.props.name}</option>
                     <option class="prop" disabled>Bedrijf: {this.props.company}</option>
                     <option class="prop" disabled>Console: {this.props.console}</option>
                     <option class="prop" disabled>Release date: {this.props.release}</option>
