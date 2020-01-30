@@ -5,16 +5,23 @@ export default class Library extends Component {
     constructor() {
         super()
         this.state = { 
-            games: [],
-            collected:undefined
+            games: []
         }
     }
 
-    componentDidMount() {
-        this.loadGames()
+    async componentDidMount() {
+        let start = 1
+        const response = await fetch(`http://145.24.222.100:8000/games?start=` + start + `&limit=5`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        })
+        const json = await response.json()
+        this.setState({games: json.items})
     }
 
-    async loadGames() {
+    async componentDidUpdate() {
         let start = 1
         const response = await fetch(`http://145.24.222.100:8000/games?start=` + start + `&limit=5`, {
             headers: {
@@ -37,8 +44,8 @@ export default class Library extends Component {
                     <ul>{videogames}</ul>
                 </div>
                 <div>
-                    <button class="button" onClick="">Load previous 5 games</button>
-                    <button class="button" onClick="">Load next 5 games</button>
+                    <button class="button">Load previous 5 games</button>
+                    <button class="button">Load next 5 games</button>
                 </div>
             </div>
         )   
