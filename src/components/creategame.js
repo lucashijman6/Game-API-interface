@@ -62,6 +62,8 @@ class CreateGame extends React.Component {
             console: '',
             release: ''
         })
+
+        this.props.history.push('/')
     }
 
     render() {
