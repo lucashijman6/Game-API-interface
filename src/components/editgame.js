@@ -20,7 +20,7 @@ class EditGame extends React.Component {
     }
 
     componentDidMount() {
-        Axios.get('http://145.24.222.100:8000/games/' + this.props.match/*.params.id*/)
+        Axios.get('http://145.24.222.100:8001/games/' + this.props.match.params.id)
             .then(response => {
                 this.setState({
                     name: response.data.name,
@@ -66,7 +66,7 @@ class EditGame extends React.Component {
             console: this.state.console,
             release: this.state.release
         }
-        Axios.post(`http://145.24.222.100:8000/games/update/` + this.props.match.params.id, updatedGame)
+        Axios.put(`http://145.24.222.100:8001/games/` + this.props.match.params.id, updatedGame)
             .then(res => console.log(res.data))
         
         this.props.history.push('/')

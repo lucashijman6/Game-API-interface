@@ -12,7 +12,7 @@ export default class Library extends Component {
 
     async componentDidMount() {
         let start = 1
-        const response = await fetch(`http://145.24.222.100:8000/games?start=` + start + `&limit=5`, {
+        const response = await fetch(`http://145.24.222.100:8001/games?start=` + start + `&limit=5`, {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
@@ -24,7 +24,7 @@ export default class Library extends Component {
 
     async componentDidUpdate() {
         let start = 1
-        const response = await fetch(`http://145.24.222.100:8000/games?start=` + start + `&limit=5`, {
+        const response = await fetch(`http://145.24.222.100:8001/games?start=` + start + `&limit=5`, {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
