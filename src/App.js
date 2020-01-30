@@ -4,7 +4,6 @@ import './App.css'
 import Library from './components/library'
 import EditGame from './components/editgame'
 import CreateGame from './components/creategame'
-import { render } from '@testing-library/react'
 
 function App() {
   return (
