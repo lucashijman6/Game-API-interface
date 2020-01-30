@@ -1,22 +1,30 @@
 import React, {Component} from 'react'
 import Card from './card.js'
+import { Link } from 'react-router-dom'
 
 export default class Library extends Component {
     constructor() {
         super()
         this.state = { 
-            games: [],
-            collected:undefined
+            games: []
         }
     }
 
-    componentDidMount() {
-        this.loadGames()
+    async componentDidMount() {
+        let start = 1
+        const response = await fetch(`http://145.24.222.100:8001/games?start=` + start + `&limit=5`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        })
+        const json = await response.json()
+        this.setState({games: json.items})
     }
 
-    async loadGames() {
+    async componentDidUpdate() {
         let start = 1
-        const response = await fetch(`http://145.24.222.100:8000/games?start=` + start + `&limit=5`, {
+        const response = await fetch(`http://145.24.222.100:8001/games?start=` + start + `&limit=5`, {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
@@ -37,8 +45,9 @@ export default class Library extends Component {
                     <ul>{videogames}</ul>
                 </div>
                 <div>
-                    <button class="button" onClick="">Load previous 5 games</button>
-                    <button class="button" onClick="">Load next 5 games</button>
+                    <Link to="/create">Nieuwe game</Link>
+                    <button className="button">Load previous 5 games</button>
+                    <button className="button">Load next 5 games</button>
                 </div>
             </div>
         )   

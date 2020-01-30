@@ -1,18 +1,19 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 class Card extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            name:this.props.name
+            id:this.props.id,
+            name:this.props.name,
+            company:this.props.company,
+            console:this.props.console,
+            release:this.props.release
         }
     }
 
-    componentDidMount() {
-        this.loadDetails()
-    }
-
-    async loadDetails() {
+    async componentDidMount() {
         const response = await fetch(this.props.url)
         const json = await response.json()
         this.setState({ name: json.name, company: json.company, console: json.console, release: json.release})
@@ -20,18 +21,18 @@ class Card extends React.Component {
 
     render() {
         return (
-            <div class="card">
-                <a class="popup" href><span class="titleprop">{this.props.name}</span>
-                    <div class="classic">
+            <div className="card">
+                <a className="popup"><span className="titleprop">{this.props.name}</span>
+                    <div className="classic">
                         <div>
-                            Bedrijf: {this.props.company}<br></br>
+                            Company: {this.props.company}<br></br>
                             Console: {this.props.console}<br></br>
                             Release date: {this.props.release}
                         </div>
                     </div>
                 </a><br></br><br></br>
-                <button class="edit">edit</button>
-                <button class="delete">delete</button>
+                <Link className="edit" to="/edit/:id">edit</Link>
+                <Link className="delete" to="/delete/:id">delete</Link>
             </div>
         )
     }
