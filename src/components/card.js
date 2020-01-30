@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Axios from 'axios'
 
 class Card extends React.Component {
     constructor(props) {
@@ -16,7 +17,7 @@ class Card extends React.Component {
     async componentDidMount() {
         const response = await fetch(this.props.url)
         const json = await response.json()
-        this.setState({ name: json.name, company: json.company, console: json.console, release: json.release})
+        this.setState({ name: json.name, company: json.company, console: json.console, release: json.release })
     }
 
     render() {
@@ -31,8 +32,8 @@ class Card extends React.Component {
                         </div>
                     </div>
                 </a><br></br><br></br>
-                <Link className="edit" to="/edit/:id">edit</Link>
-                <Link className="delete" to="/delete/:id">delete</Link>
+                <Link className="edit" to="/edit/">edit</Link>
+                <Link className="delete" to="/delete">delete</Link>
             </div>
         )
     }
