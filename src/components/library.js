@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import Card from './card.js'
+import { Link } from 'react-router-dom'
 
 export default class Library extends Component {
     constructor() {
@@ -44,8 +45,9 @@ export default class Library extends Component {
                     <ul>{videogames}</ul>
                 </div>
                 <div>
-                    <button class="button">Load previous 5 games</button>
-                    <button class="button">Load next 5 games</button>
+                    <Link to="/create">Nieuwe game</Link>
+                    <button className="button">Load previous 5 games</button>
+                    <button className="button">Load next 5 games</button>
                 </div>
             </div>
         )   
