@@ -33,7 +33,7 @@ class Card extends React.Component {
                     </div>
                 </a><br></br><br></br>
                 <Link className="edit" to="/edit/">edit</Link>
-                <Link className="delete" onClick={}>delete</Link>
+                <Link className="delete" onClick="">delete</Link>
             </div>
         )
     }

@@ -34,67 +34,57 @@ class EditGame extends React.Component {
             })
     }
 
-    onChangeName(e) {
-        this.setState({
-            name: e.target.value
-        })
-    }
+    updateGame() {
+        let { name, company, console, release } = this.state.editGameData
 
-    onChangeCompany(e) {
-        this.setState({
-            company: e.target.value
+        Axios.put(`http://145.24.222.100:8001/games/` + this.state.editGameData.id, {
+            name, company, console, release
+        }).then((response) => {
+            this.refreshGames()
         })
-    }
-
-    onChangeConsole(e) {
-        this.setState({
-            console: e.target.value
-        })
-    }
-
-    onChangeRelease(e) {
-        this.setState({
-            release: e.target.value
-        })
-    }
-
-    onSubmit(e) {
-        e.preventDefault()
-        const updatedGame = {
-            name: this.state.name,
-            company: this.state.company,
-            console: this.state.console,
-            release: this.state.release
-        }
-        Axios.put(`http://145.24.222.100:8001/games/` + this.props.match.params.id, updatedGame)
-            .then(res => console.log(res.data))
         
         this.props.history.push('/')
     }
 
+    editGame(id, name, company, console, release) {
+        this.setState({
+            editGameData: { id, name, console, company, release }, editGameModal: ! this.state.editGameModal
+        })
+    }
+
+    refreshGames() {
+        Axios.get('http://145.24.222.100:8001/games').then((response) => {
+            this.setState({
+                games: response.data
+            })
+        })
+    }
+
     render() {
-        return(
-            <div>
-                <h3>Bewerk deze game</h3>
-                <form onSubmit={this.onSubmit}>
-                    <div>
-                        <label>Name: </label>
-                        <input type="text" value={this.state.name} onChange={this.onChangeName}></input>
-                    </div><div>
-                        <label>Company: </label>
-                        <input type="text" value={this.state.company} onChange={this.onChangeCompany}></input>
-                    </div><div>
-                        <label>Console: </label>
-                        <input type="text" value={this.state.console} onChange={this.onChangeConsole}></input>
-                    </div><div>
-                        <label>Release: </label>
-                        <input type="text" value={this.state.release} onChange={this.onChangeRelease}></input>
-                    </div><div>
-                        <input type="submit" value="Update game"></input>
-                    </div>
-                </form>
-            </div>
-        )
+        let games = this.state.games.map((game) => {
+            return (
+                <div>
+                    <h3>Bewerk deze game</h3>
+                    <form onSubmit={this.onSubmit}>
+                        <div>
+                            <label>Name: </label>
+                            <input type="text" value={this.state.name} onChange={this.onChangeName}></input>
+                        </div><div>
+                            <label>Company: </label>
+                            <input type="text" value={this.state.company} onChange={this.onChangeCompany}></input>
+                        </div><div>
+                            <label>Console: </label>
+                            <input type="text" value={this.state.console} onChange={this.onChangeConsole}></input>
+                        </div><div>
+                            <label>Release: </label>
+                            <input type="text" value={this.state.release} onChange={this.onChangeRelease}></input>
+                        </div><div>
+                            <input type="submit" value="Update game"></input>
+                        </div>
+                    </form>
+                </div>
+            )
+        })
     }
 }
 
