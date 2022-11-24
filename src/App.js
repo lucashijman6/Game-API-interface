@@ -153,6 +153,7 @@ class App extends Component {
         {/*Return de library*/}
         {games}<br></br><br></br>
 
+        {/*TODO: Maak form een modal*/}
         {/*Return de aanmaakform*/}
         <form onSubmit={this.onSubmit}>
           <h3>Voeg een game toe</h3>
