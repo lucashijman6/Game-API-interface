@@ -118,13 +118,13 @@ class App extends Component {
 
   toggleCreateGameModal() {
     this.setState({
-      createGameModal: ! this.state.createGameModal
+      createGameModal: !this.state.createGameModal
     })
   }
 
   toggleEditGameModal() {
     this.setState({
-      editGameModal: ! this.state.editGameModal
+      editGameModal: !this.state.editGameModal
     })
   }
 
@@ -155,13 +155,15 @@ class App extends Component {
         </tr>
       )
     })
-    
+
     return (
       <div>
         {/*Return de library*/}
         {games}<br></br><br></br>
+        <Button color="primary" onClick={this.toggleCreateGameModal.bind(this)}>
+          Nieuw spel
+        </Button>
 
-        {/*TODO: Maak form een modal*/}
         {/*Return de aanmaakform*/}
         <Modal isOpen={this.state.createGameModal} toggle={this.toggle}>
           <ModalHeader/>
@@ -180,13 +182,12 @@ class App extends Component {
               </div><div>
                 <label>Release: </label>
                 <input type="text" onChange={this.onChangeRelease}></input>
-              </div><div><br></br>
-                <input type="submit" value="Maak aan"></input>
               </div>
             </form>
           </ModalBody>
           <ModalFooter>
-
+            <Button onClick={this.onSubmit.bind(this)}>Update</Button>
+            <Button onClick={this.toggleCreateGameModal.bind(this)}>Annuleer</Button>
           </ModalFooter>
         </Modal>
 
