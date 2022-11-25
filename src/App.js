@@ -24,6 +24,7 @@ class App extends Component {
         console: '',
         release: ''
       },
+      createGameModal: false,
       editGameModal: false
     }
   }
@@ -115,6 +116,12 @@ class App extends Component {
     })
   }
 
+  toggleCreateGameModal() {
+    this.setState({
+      createGameModal: ! this.state.createGameModal
+    })
+  }
+
   toggleEditGameModal() {
     this.setState({
       editGameModal: ! this.state.editGameModal
@@ -148,6 +155,7 @@ class App extends Component {
         </tr>
       )
     })
+    
     return (
       <div>
         {/*Return de library*/}
@@ -155,24 +163,32 @@ class App extends Component {
 
         {/*TODO: Maak form een modal*/}
         {/*Return de aanmaakform*/}
-        <form onSubmit={this.onSubmit}>
-          <h3>Voeg een game toe</h3>
-          <div>
-            <label>Name: </label>
-            <input type="text" onChange={this.onChangeName}></input>
-          </div><div>
-            <label>Company: </label>
-            <input type="text" onChange={this.onChangeCompany}></input>
-          </div><div>
-            <label>Console: </label>
-            <input type="text" onChange={this.onChangeConsole}></input>
-          </div><div>
-            <label>Release: </label>
-            <input type="text" onChange={this.onChangeRelease}></input>
-          </div><div><br></br>
-            <input type="submit" value="Maak aan"></input>
-          </div>
-        </form>
+        <Modal isOpen={this.state.createGameModal} toggle={this.toggle}>
+          <ModalHeader/>
+          <ModalBody>
+            <form onSubmit={this.onSubmit}>
+              <h3>Voeg een game toe</h3>
+              <div>
+                <label>Name: </label>
+                <input type="text" onChange={this.onChangeName}></input>
+              </div><div>
+                <label>Company: </label>
+                <input type="text" onChange={this.onChangeCompany}></input>
+              </div><div>
+                <label>Console: </label>
+                <input type="text" onChange={this.onChangeConsole}></input>
+              </div><div>
+                <label>Release: </label>
+                <input type="text" onChange={this.onChangeRelease}></input>
+              </div><div><br></br>
+                <input type="submit" value="Maak aan"></input>
+              </div>
+            </form>
+          </ModalBody>
+          <ModalFooter>
+
+          </ModalFooter>
+        </Modal>
 
         {/* Return de updateform*/}
         <Modal isOpen={this.state.editGameModal} toggle={this.toggleEditGameModal.bind(this)}>
